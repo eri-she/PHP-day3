@@ -1,7 +1,10 @@
-<?php 
+<?php
 require_once "actions/db_connect.php";
 
-$sql = "SELECT * FROM dishes";
+
+
+$sql = "SELECT * FROM dishes WHERE dishId = 1";
+
 $data = mysqli_query($connection, $sql);
 $tbody = "";
 
@@ -10,14 +13,18 @@ if (mysqli_num_rows($data) > 0) {
         $tbody .= "
         <tr>
             <td><img class='img-thumbnail' src='pictures/" . $row['image'] . "'</td>
-            <td>" . $row['name'] . "</td>
-            <td>" . $row['price'] . "</td>
-            <td> <a href='details.php'>Details</a> </td> 
+           <td>" . $row['name'] . "</td>
+           <td>" . $row['price'] . "</td>
+           <td>" . $row['description']."</td> 
+           <td><a href='update.php?id=" . $row['dishId'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
+           <a href='delete.php?id=" . $row['dishId'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a>
+           </td>
         </tr>
         ";
     }
 } else {
-    $tbody = "<tr><td colspan='4' class='text-center'>No data available</td></tr>";
+    // $tbody = "<tr><td colspan='4' class='text-center'>No data available</td></tr>";
+    echo "Ooops... Something went wrong!";
 }
 ?>
 
@@ -53,7 +60,8 @@ if (mysqli_num_rows($data) > 0) {
 <body>
 <div class="manageProduct w-75 mt-3">
         <div class='mb-3'>
-            <a href="create.php"><button class='btn btn-primary' type="button">Add product</button></a>
+           <a href='index.php'><button class='btn btn-light btn-sm' type='button'>Back</button></a>
+           <a href="create.php"><button class='btn btn-primary' type="button">Add product</button></a>
         </div>
         <p class='h2'>Dishes</p>
         <table class='table table-striped'>
@@ -62,7 +70,8 @@ if (mysqli_num_rows($data) > 0) {
                     <th>Picture</th>
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Details</th>
+                    <th>Description</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>

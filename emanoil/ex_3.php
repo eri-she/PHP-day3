@@ -11,9 +11,9 @@ echo "</pre>";
 
 function getMaxNumber($arr){
     $maxNumber = $arr[0];
-    foreach ($arr as $number) {
-        if ($number > $maxNumber) {
-            $maxNumber = $number;
+    foreach ($arr as $currentNumber) {
+        if ($currentNumber > $maxNumber) {
+            $maxNumber = $currentNumber;
         }
     }
     return $maxNumber;

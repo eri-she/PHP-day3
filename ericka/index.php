@@ -6,8 +6,10 @@ $sql = "SELECT * FROM dishes";
 $result = mysqli_query($conn, $sql);
 // function to fetch data returned from a query.
 $tbody="";
+
 // var_dump_pretty($row);
-if (mysqli_num_rows($result) > 0) {
+// 0 replaces the  variable i then we have the number of objets of the array
+if (0 < mysqli_num_rows($result) ) {
     while ($array = mysqli_fetch_assoc($result)) {
         
         $tbody .= "

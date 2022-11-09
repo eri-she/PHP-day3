@@ -1,4 +1,30 @@
 <?php
+require_once "./actions/db_connect.php";
+// We can write our query and save it in a variable
+$sql = "SELECT * FROM dishes";
+// this function will accept 2 arguments, the connection variable and the query.
+$result = mysqli_query($conn, $sql);
+// function to fetch data returned from a query.
+$tbody="";
+// var_dump_pretty($row);
+if (mysqli_num_rows($result) > 0) {
+    while ($array = mysqli_fetch_assoc($result)) {
+        
+        $tbody .= "
+<tr>
+            <td><img class='img-thumbnail' src='" . $array['image'] ."' width=100px</td>
+           <td>" . $array['name'] . "</td>
+           <td>" . $array['price'] . "</td>
+           <td><a href='update.php?id=" . $array['id'] . "'><button class='btn btn-primary btn-sm' type='button'>Edit</button></a>
+           <a href='delete.php?id=" . $array['id'] . "'><button class='btn btn-danger btn-sm' type='button'>Delete</button></a></td>
+            </tr>
+";
+    }
+} else {
+    $tbody = "<tr><td colspan='4' class='text-center'>No data available</td></tr>";
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +53,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- <?php echo $tbody; ?> -->
+                <?php echo $tbody; ?>
             </tbody>
         </table>
     </div>

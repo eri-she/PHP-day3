@@ -42,7 +42,7 @@ if (0 < mysqli_num_rows($result) ) {
 <body>
       <div class="manageProduct w-75 mt-3 container">
         <div class='mb-3'>
-            <a href="create.php"><button class='btn btn-primary' type="button">Add product</button></a>
+            <a href="./create.php"><button class='btn btn-primary' type="button">Add product</button></a>
         </div>
         <p class='h2'>Products</p>
         <table class='table table-striped'>
